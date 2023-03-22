@@ -90,6 +90,18 @@ class OrderController extends Controller
             $orderDetail = OrderDetail::create($prepareOrderDetail);
         }
 
+
+        $subTotal = 0;
+        $total = $order->order_details->map(function ($orderDetail) use ($subTotal) {
+            $subTotal += $orderDetail->amount * $orderDetail->price;
+            return $subTotal;
+        })->toarray();
+
+        // dd(array_sum($subTotal));
+        $order->update([
+            'total' => array_sum($total)
+        ]);
+
         return redirect()->route('products.index');
     }
 

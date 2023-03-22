@@ -25,7 +25,7 @@ p.blade.php -->
                         @endforeach
                         <td>-</td>
                         <td>-</td>
-                        <td>Total Price</td>
+                        <td>{{ $order->total}}</td>
                     </tbody>
                 </table>
             </div>
