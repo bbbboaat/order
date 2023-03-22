@@ -38,8 +38,8 @@ class OrderController extends Controller
         ];
 
 
-
         $order = Order::create($prepareOrder);
+
 
         $product = Product::find($request->product_id);
 

@@ -16,10 +16,12 @@ p.blade.php -->
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($order as $item)
-                        <td>{{ $item->name}}</td>
-                            <td>{{ $item->price}}</td>
-                            <td>{{ $item->amount}}</td>
+                        @foreach($order->order_details as $item)
+                            <tr>
+                                <td>{{ $item->product_name}}</td>
+                                <td>{{ $item->price}}</td>
+                                <td>{{ $item->amount}}</td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
