@@ -126,9 +126,29 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        return $request;
-    }
 
+        $product = Product::find($request->product_id);
+        $order = Order::where('user_id', Auth::id())->where('status', 0)->first();
+
+        // return $request;
+        $cartDetail = $order->order_details()->where('product_id', $product->id)->first();
+
+        if ($cartDetail) {
+            if ($request->value == "increase") {
+                $amountNew = $cartDetail->amount + 1;
+            } else {
+                $amountNew = $cartDetail->amount - 1;
+            }
+            $cartDetail->update([
+                'amount' => $amountNew
+            ]);
+
+
+
+        }
+
+        return redirect()->route('orders.index');
+    }
     /**
      * Remove the specified resource from storage.
      */

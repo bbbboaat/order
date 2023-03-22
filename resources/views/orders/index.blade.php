@@ -29,6 +29,7 @@ p.blade.php -->
                                             @csrf
                                             @method('put')
                                             <input type="hidden" value="increase" name="value">
+                                            <input type="hidden" name="product_id" value="{{$item->product_id}}">
                                             <button class="btn btn-outline-success" type = "submit">+</button>
 
                                         </form>
@@ -38,6 +39,7 @@ p.blade.php -->
                                             @csrf
                                             @method('put')
                                             <input type="hidden" value="decrease" name="value">
+                                            <input type="hidden" name="product_id" value="{{$item->product_id}}">
                                             <button class="btn btn-outline-danger" type = "submit">-</button>
                                         </form>
 
