@@ -127,36 +127,43 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
 
-        $product = Product::find($request->product_id);
-        $order = Order::where('user_id', Auth::id())->where('status', 0)->first();
-
-        // return $request;
-        $cartDetail = $order->order_details()->where('product_id', $product->id)->first();
-
-        if ($cartDetail) {
-            if ($request->value == "increase") {
-                $amountNew = $cartDetail->amount + 1;
-            } else {
-                $amountNew = $cartDetail->amount - 1;
-            }
-            $cartDetail->update([
-                'amount' => $amountNew
+        $cartDetail = $order->order_details()->where('product_id', $request->product_id)->first();
+        if ($request->value == "checkout") {
+            $order->update([
+                'status' => 1
             ]);
+        } else {
+            if ($cartDetail) {
 
+                if ($request->value == "increase") {
+                    $amountNew = $cartDetail->amount + 1;
+                } else {
+                    if ($cartDetail->amount <= 1) {
+                        $cartDetail->delete();
+                    } else {
 
+                        $amountNew = $cartDetail->amount - 1;
+                        // $cartDetail->update([
+                        //     'amount' => $amountNew
+                        // ]);
+                    }
 
+                }
+                $cartDetail->update([
+                    'amount' => $amountNew
+                ]);
+            }
+            $subTotal = 0;
+            $total = $order->order_details->map(function ($orderDetail) use ($subTotal) {
+                $subTotal += $orderDetail->amount * $orderDetail->price;
+                return $subTotal;
+            })->toarray();
+
+            // dd(array_sum($subTotal));
+            $order->update([
+                'total' => array_sum($total)
+            ]);
         }
-        $subTotal = 0;
-        $total = $order->order_details->map(function ($orderDetail) use ($subTotal) {
-            $subTotal += $orderDetail->amount * $orderDetail->price;
-            return $subTotal;
-        })->toarray();
-
-        // dd(array_sum($subTotal));
-        $order->update([
-            'total' => array_sum($total)
-        ]);
-
         return redirect()->route('orders.index');
     }
     /**

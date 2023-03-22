@@ -16,6 +16,7 @@ p.blade.php -->
                         </tr>
                     </thead>
                     <tbody>
+                        @if ($order)
                         @foreach($order->order_details as $item)
                             <tr>
                                 <td>{{ $item->product_name}}</td>
@@ -52,13 +53,15 @@ p.blade.php -->
                         <td>-</td>
                         <td>{{ $order->total}}</td>
                         <td class="text-center">
-                            <form action="">
+                            <form action="{{ route('orders.update' , $order->id )}}" method="post">
                                 @csrf
                                 @method('put')
-                                <input type="hidden" name="value" value=""checkout>
+                                <input type="hidden" name="value" value="checkout">
                                 <button class="btn btn-outline-primary" type="submit">Checkout</button>
                             </form>
                         </td>
+
+                        @endif
                     </tbody>
                 </table>
             </div>
