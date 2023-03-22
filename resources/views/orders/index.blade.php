@@ -16,7 +16,7 @@ p.blade.php -->
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($orders as $item)
+                        @foreach($order as $item)
                         <td>{{ $item->name}}</td>
                             <td>{{ $item->price}}</td>
                             <td>{{ $item->amount}}</td>
