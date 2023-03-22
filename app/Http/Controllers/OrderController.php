@@ -137,21 +137,26 @@ class OrderController extends Controller
 
                 if ($request->value == "increase") {
                     $amountNew = $cartDetail->amount + 1;
+                    $cartDetail->update([
+                        'amount' => $amountNew
+                    ]);
+
                 } else {
                     if ($cartDetail->amount <= 1) {
                         $cartDetail->delete();
+
                     } else {
 
                         $amountNew = $cartDetail->amount - 1;
-                        // $cartDetail->update([
-                        //     'amount' => $amountNew
-                        // ]);
+                        $cartDetail->update([
+                            'amount' => $amountNew
+                        ]);
                     }
 
                 }
-                $cartDetail->update([
-                    'amount' => $amountNew
-                ]);
+                // $cartDetail->update([
+                //     'amount' => $amountNew
+                // ]);
             }
             $subTotal = 0;
             $total = $order->order_details->map(function ($orderDetail) use ($subTotal) {
