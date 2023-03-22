@@ -40,8 +40,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $file = Storage::disk('public')->put('images', $request->image);
-        // dd($file);
-        // return $file;
+
 
         $prepareProduct = [
             'name' => $request->name,
@@ -77,13 +76,21 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+
+        $file = Storage::disk('public')->put('images', $request->image);
         $prepareProduct = [
             'name' => $request->name,
             'price' => $request->price,
-            'user_id' => Auth::id()
+            'user_id' => Auth::id(),
+            'image' => $file
         ];
 
         $productInst = Product::find($product->id);
+
+        if ($productInst->Image) {
+
+            unlink('storage/' . $productInst->image);
+        }
 
         $productInst->update($prepareProduct);
 
@@ -96,6 +103,11 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $productInst = Product::find($product->id);
+
+        if ($productInst->Image) {
+
+            unlink('storage/' . $productInst->image);
+        }
         $productInst->delete();
 
         return redirect()->route('products.index');
