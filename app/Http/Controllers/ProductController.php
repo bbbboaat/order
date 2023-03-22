@@ -38,6 +38,8 @@ class ProductController extends Controller
         ];
 
         $product = Product::create($prepareProduct);
+
+        return redirect()->route('products.index');
         // // return Auth::id();
     }
 
