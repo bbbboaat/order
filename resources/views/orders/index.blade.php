@@ -11,21 +11,45 @@ p.blade.php -->
                     <thead>
                         <tr>
                             <th>Order</th>
-                            <th>Price</th>
                             <th>Amount</th>
+                            <th>Price</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($order->order_details as $item)
                             <tr>
                                 <td>{{ $item->product_name}}</td>
-                                <td>{{ $item->price}}</td>
                                 <td>{{ $item->amount}}</td>
+                                <td>{{ $item->price}}</td>
+                                <td>
+
+                                <div class="row text-center">
+                                    <div class="col-6">
+                                        <form action="{{route('orders.update' , $order->id)}}" method="post">
+                                            @csrf
+                                            @method('put')
+                                            <input type="hidden" value="increase" name="value">
+                                            <button class="btn btn-outline-success" type = "submit">+</button>
+
+                                        </form>
+                                    </div>
+                                    <div class="col-6">
+                                        <form action="{{route('orders.update' , $order->id)}}" method="post">
+                                            @csrf
+                                            @method('put')
+                                            <input type="hidden" value="decrease" name="value">
+                                            <button class="btn btn-outline-danger" type = "submit">-</button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                                </td>
                             </tr>
                         @endforeach
                         <td>-</td>
                         <td>-</td>
                         <td>{{ $order->total}}</td>
+                        <td></td>
                     </tbody>
                 </table>
             </div>
