@@ -11,9 +11,17 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
+
+        $search = $request->search;
+        if ($search != '') {
+            $products = Product::where('name', 'like', '%' . $search . '%')->get();
+
+        } else {
+
+            $products = Product::all();
+        }
         return view('products.index')->with('productsView', $products);
     }
 
