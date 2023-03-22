@@ -19,7 +19,13 @@ p.blade.php -->
 
                         </a>
                         <a href="{{route('products.edit',$item->id)}}" class="btn btn-warning mt-2">edit</a>
+                        <form action="{{route('products.destroy' , $item->id)}}" method = "post">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn btn-danger">Delete Product</button>
+                    </form>
                     </div>
+
 
 
 
