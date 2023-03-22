@@ -13,7 +13,7 @@ p.blade.php -->
                         Product1
                     </div>
                     <div class="col-4">
-                        Product2
+                        {{$productsView}}
                     </div>
                     <div class="col-4">
                         Product3
