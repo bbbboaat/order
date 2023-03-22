@@ -45,7 +45,11 @@ class OrderController extends Controller
         if ($order) {
             $cartDetail = $order->order_details()->where('product_id', $product->id)->first();
 
-
+            if ($cartDetail) {
+                $cartDetail->update([
+                    'amount'->$orderDetail->amount++
+                ]);
+            }
         } else {
 
             $prepareOrder = [
