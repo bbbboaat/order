@@ -51,7 +51,14 @@ p.blade.php -->
                         <td>-</td>
                         <td>-</td>
                         <td>{{ $order->total}}</td>
-                        <td></td>
+                        <td class="text-center">
+                            <form action="">
+                                @csrf
+                                @method('put')
+                                <input type="hidden" name="value" value=""checkout>
+                                <button class="btn btn-outline-primary" type="submit">Checkout</button>
+                            </form>
+                        </td>
                     </tbody>
                 </table>
             </div>
