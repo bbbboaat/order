@@ -23,6 +23,9 @@ p.blade.php -->
                                 <td>{{ $item->amount}}</td>
                             </tr>
                         @endforeach
+                        <td>-</td>
+                        <td>-</td>
+                        <td>Total Price</td>
                     </tbody>
                 </table>
             </div>
