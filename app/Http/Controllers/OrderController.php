@@ -16,7 +16,14 @@ class OrderController extends Controller
     public function index()
     {
         $order = Order::where('user_id', Auth::id())->where('status', 0)->first();
-        return view('orders.index')->with('order', $order);
+        if ($order == NULL) {
+            return view('orders.empty');
+        } else {
+
+
+            // dd($order);
+            return view('orders.index')->with('order', $order);
+        }
     }
 
     /**
@@ -48,7 +55,7 @@ class OrderController extends Controller
             'product_id' => $product->id,
             'product_name' => $product->name,
             'amount' => 1,
-            'price' => $product->id,
+            'price' => $product->price,
 
         ];
 
