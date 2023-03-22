@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -38,17 +39,21 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $file = Storage::disk('public')->put('images', $request->image);
+        // dd($file);
+        // return $file;
 
         $prepareProduct = [
             'name' => $request->name,
             'price' => $request->price,
-            'user_id' => Auth::id()
+            'user_id' => Auth::id(),
+            'image' => $file
         ];
 
         $product = Product::create($prepareProduct);
 
         return redirect()->route('products.index');
-        // // return Auth::id();
+        // return Auth::id();
     }
 
     /**
