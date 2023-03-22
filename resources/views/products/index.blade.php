@@ -9,15 +9,21 @@ p.blade.php -->
             <div class="col-12">
                 <a class = "mb-3 btn btn-primary"href="{{ route ('products.create')}}">Create Product</a>
                 <div class="row">
+                    @foreach ($productsView as $item)
                     <div class="col-4">
-                        Product1
+                        <a href="">
+                        <div class="card p-3 mt-5">
+                        <h4>Product Name : {{$item -> name}}</h4>
+                        <p>Price : {{$item -> price}}</p>
+                        </div>
+
+                        </a>
+                        <a href="" class="btn btn-warning mt-2">edit</a>
                     </div>
-                    <div class="col-4">
-                        {{$productsView}}
-                    </div>
-                    <div class="col-4">
-                        Product3
-                    </div>
+
+
+
+                    @endforeach
 
 
                 </div>
