@@ -39,15 +39,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $file = Storage::disk('public')->put('images', $request->image);
-
-
         $prepareProduct = [
             'name' => $request->name,
             'price' => $request->price,
             'user_id' => Auth::id(),
-            'image' => $file
+
         ];
+
+        if ($request->image) {
+            $file = Storage::disk('public')->put('images', $request->image);
+            $prepareProduct['image'] = $file;
+        }
+
+
+
 
         $product = Product::create($prepareProduct);
 
@@ -87,7 +92,7 @@ class ProductController extends Controller
 
         $productInst = Product::find($product->id);
 
-        if ($productInst->Image) {
+        if ($productInst->Image && $request->image) {
 
             unlink('storage/' . $productInst->image);
         }
