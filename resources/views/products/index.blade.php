@@ -22,7 +22,7 @@ p.blade.php -->
                         <form action="{{route('products.destroy' , $item->id)}}" method = "post">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="btn btn-danger">Delete Product</button>
+                        <button type="submit" class="btn btn-danger mt-3">Delete Product</button>
                     </form>
                     </div>
 
