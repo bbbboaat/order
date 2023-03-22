@@ -7,6 +7,7 @@ p.blade.php -->
     <div class="container">
         <div class="row">
             <div class="col-12">
+                <a class = "mb-3 btn btn-primary"href="{{ route ('products.create')}}">Create Product</a>
                 <div class="row">
                     <div class="col-4">
                         Product1
