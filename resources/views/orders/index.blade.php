@@ -16,9 +16,11 @@ p.blade.php -->
                         </tr>
                     </thead>
                     <tbody>
-                        <td>Hamburger</td>
-                        <td>50</td>
-                        <td>1</td>
+                        @foreach($orders as $item)
+                        <td>{{ $item->name}}</td>
+                            <td>{{ $item->price}}</td>
+                            <td>{{ $item->amount}}</td>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
