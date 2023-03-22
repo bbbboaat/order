@@ -18,7 +18,7 @@ p.blade.php -->
                         </div>
 
                         </a>
-                        <a href="" class="btn btn-warning mt-2">edit</a>
+                        <a href="{{route('products.edit',$item->id)}}" class="btn btn-warning mt-2">edit</a>
                     </div>
 
 
