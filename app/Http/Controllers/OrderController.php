@@ -39,28 +39,38 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $prepareOrder = [
-            'status' => 0,
-            'user_id' => Auth::id()
-        ];
-
-
-        $order = Order::create($prepareOrder);
-
 
         $product = Product::find($request->product_id);
-
-        $prepareOrderDetail = [
-            'order_id' => $order->id,
-            'product_id' => $product->id,
-            'product_name' => $product->name,
-            'amount' => 1,
-            'price' => $product->price,
-
-        ];
+        $order = Order::where('user_id', Auth::id())->where('status', 0)->first();
+        if ($order) {
+            $cartDetail = $order->order_details()->where('product_id', $product->id)->first();
 
 
-        $orderDetail = OrderDetail::create($prepareOrderDetail);
+        } else {
+
+            $prepareOrder = [
+                'status' => 0,
+                'user_id' => Auth::id()
+            ];
+
+
+            $order = Order::create($prepareOrder);
+
+
+
+
+            $prepareOrderDetail = [
+                'order_id' => $order->id,
+                'product_id' => $product->id,
+                'product_name' => $product->name,
+                'amount' => 1,
+                'price' => $product->price,
+
+            ];
+
+
+            $orderDetail = OrderDetail::create($prepareOrderDetail);
+        }
 
         return redirect()->route('products.index');
     }
