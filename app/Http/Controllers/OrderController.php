@@ -51,6 +51,17 @@ class OrderController extends Controller
                     'amount' => $amountNew
                 ]);
             } else {
+                $prepareOrderDetail = [
+                    'order_id' => $order->id,
+                    'product_id' => $product->id,
+                    'product_name' => $product->name,
+                    'amount' => 1,
+                    'price' => $product->price,
+
+                ];
+
+
+                $orderDetail = OrderDetail::create($prepareOrderDetail);
 
             }
         } else {
