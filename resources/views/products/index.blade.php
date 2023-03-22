@@ -4,5 +4,5 @@ p.blade.php -->
 
 @section('content')
 
-
+    product
 @endsection
