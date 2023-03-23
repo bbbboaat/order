@@ -54,7 +54,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('products.index')}}">products</a>
+                            <a class="nav-link" href="{{route('products.index')}}">product</a>
                         </li>
 
                             <li class="nav-item dropdown">

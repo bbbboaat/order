@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Auth\LoginController;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 
 class ProductController extends Controller
 {
@@ -20,11 +23,11 @@ class ProductController extends Controller
         if (Auth::check()) {
             $search = $request->search;
             if ($search != '') {
-                $products = Product::where('name', 'like', '%' . $search . '%')->get();
+                $products = Product::where('name', 'like', '%' . $search . '%')->paginate(6);
 
             } else {
 
-                $products = Product::all();
+                $products = Product::paginate(6);
             }
             return view('products.index')->with('productsView', $products);
         } else {

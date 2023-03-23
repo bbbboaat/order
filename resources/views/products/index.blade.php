@@ -28,7 +28,7 @@ p.blade.php -->
                         <form action="{{route('orders.store')}}" method="post">
                             @csrf
                             <input type="hidden" name="product_id" value="{{$item->id}}">
-                            <div class="card p-3 mt-5">
+                            <div class="card p-3 mt-5 ">
                                 <img class="rounded-3" src="{{asset('storage/' . $item->image)}}" alt="">
                                 <h4 class="mt-3">Product Name : {{$item -> name}}</h4>
                                 <p>Price : {{$item -> price}}</p>
@@ -53,6 +53,10 @@ p.blade.php -->
                     </div>
 
                     @endforeach
+                    <div class="mt-5">
+
+                        {{ $productsView->links('pagination::bootstrap-4')}}
+                    </div>
 
 
                 </div>

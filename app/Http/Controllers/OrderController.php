@@ -15,6 +15,8 @@ class OrderController extends Controller
      */
     public function index()
     {
+
+
         $order = Order::where('user_id', Auth::id())->where('status', 0)->first();
         if ($order == NULL) {
             return view('orders.empty');
@@ -142,7 +144,7 @@ class OrderController extends Controller
                 } else {
                     if ($cartDetail->amount <= 1) {
                         $cartDetail->delete();
-
+                        return view('orders.empty');
 
                     } else {
 
