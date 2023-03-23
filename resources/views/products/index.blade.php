@@ -7,7 +7,10 @@ p.blade.php -->
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <a class = "mb-3 btn btn-primary"href="{{ route ('products.create')}}">Create Product</a>
+
+            @if(Auth::user()->type ==1)
+            <a class = "mb-3 btn btn-primary"href="{{ route ('products.create')}}">Create Product</a>
+            @endif
                 <form action="{{route ('products.index')}}" method="get">
                     <div class="d-flex justify-content my-2">
                         <input class="form-control" type="text" name="search" placeholder="search">
@@ -31,6 +34,7 @@ p.blade.php -->
 
                         </form>
 
+                        @if(Auth::user()->type ==1)
                         <div class="d-flex justify-content-around" >
                             <a href="{{route('products.edit',$item->id)}}" class="btn btn-warning mt-2 ">edit</a>
                             <form action="{{route('products.destroy' , $item->id)}}" method = "post">
@@ -39,12 +43,9 @@ p.blade.php -->
                                 <button type="submit" class="btn btn-danger mt-2 ">Delete Product</button>
                             </form>
                         </div>
-                        <!-- <a href="{{route('products.edit',$item->id)}}" class="btn btn-warning mt-2">edit</a>
-                        <form action="{{route('products.destroy' , $item->id)}}" method = "post">
-                        @csrf
-                        @method('delete')
-                        <button type="submit" class="btn btn-danger mt-3">Delete Product</button>
-                    </form> -->
+
+                        @endif
+
                     </div>
 
 
