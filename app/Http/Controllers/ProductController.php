@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    function __construct()
+    {
+        $this->middleware('');
+    }
     public function index(Request $request)
     {
 

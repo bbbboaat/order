@@ -8,15 +8,19 @@ p.blade.php -->
         <div class="row">
             <div class="col-12">
 
-            @if(Auth::user()->type ==1)
-            <a class = "mb-3 btn btn-primary"href="{{ route ('products.create')}}">Create Product</a>
-            @endif
+                @if(Auth::user()->type ==1)
+                    <a class = "mb-3 btn btn-primary"href="{{ route ('products.create')}}">Create Product</a>
+                @endif
+
+
                 <form action="{{route ('products.index')}}" method="get">
                     <div class="d-flex justify-content my-2">
                         <input class="form-control" type="text" name="search" placeholder="search">
                         <button type="submit" class="btn btn-info col-3">Search</button>
                     </div>
                 </form>
+
+
                 <div class="row">
                     @foreach ($productsView as $item)
                     <div class="col-4">
@@ -47,9 +51,6 @@ p.blade.php -->
                         @endif
 
                     </div>
-
-
-
 
                     @endforeach
 
