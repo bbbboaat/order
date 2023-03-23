@@ -23,8 +23,8 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="https://github.com/bbbboaat/shoppingcart" >
-                <i class="fa-brands fa-github p-2"></i>Source Code
+                <a class="navbar-brand " href="https://github.com/bbbboaat/order" >
+                <i class="fa-brands fa-github p-2 "></i>Source Code
                 </a>
                 <i></i>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -62,7 +62,7 @@
 
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('products.index')}}">products</a>
+                            <a class="nav-link" href="{{route('products.index')}} ">products</a>
                         </li>
 
                             <li class="nav-item dropdown">

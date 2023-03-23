@@ -31,7 +31,7 @@ class ProductController extends Controller
             }
             return view('products.index')->with('productsView', $products);
         } else {
-            return view('auth.login');
+            return redirect('login');
 
         }
 
