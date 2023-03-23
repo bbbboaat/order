@@ -53,6 +53,7 @@ p.blade.php -->
                         <td>-</td>
                         <td>{{ $order->total}}</td>
                         <td class="text-center">
+
                             <form action="{{ route('orders.update' , $order->id )}}" method="post">
                                 @csrf
                                 @method('put')
