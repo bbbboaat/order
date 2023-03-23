@@ -144,6 +144,7 @@ class OrderController extends Controller
                 } else {
                     if ($cartDetail->amount <= 1) {
                         $cartDetail->delete();
+                        return view('orders.empty');
 
                     } else {
 
