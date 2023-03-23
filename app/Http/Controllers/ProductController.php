@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Auth\LoginController;
 
 class ProductController extends Controller
 {
@@ -16,15 +17,24 @@ class ProductController extends Controller
     public function index(Request $request)
     {
 
-        $search = $request->search;
-        if ($search != '') {
-            $products = Product::where('name', 'like', '%' . $search . '%')->get();
+        if (Auth::check()) {
+            $search = $request->search;
+            if ($search != '') {
+                $products = Product::where('name', 'like', '%' . $search . '%')->get();
 
+            } else {
+
+                $products = Product::all();
+            }
+            return view('products.index')->with('productsView', $products);
         } else {
+            return view('auth.login');
 
-            $products = Product::all();
         }
-        return view('products.index')->with('productsView', $products);
+
+
+
+
     }
 
     /**

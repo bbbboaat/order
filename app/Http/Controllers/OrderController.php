@@ -20,8 +20,6 @@ class OrderController extends Controller
             return view('orders.empty');
         } else {
 
-
-            // dd($order);
             return view('orders.index')->with('order', $order);
         }
     }
@@ -144,7 +142,7 @@ class OrderController extends Controller
                 } else {
                     if ($cartDetail->amount <= 1) {
                         $cartDetail->delete();
-                        return view('orders.empty');
+
 
                     } else {
 
