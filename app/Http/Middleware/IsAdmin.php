@@ -20,6 +20,6 @@ class IsAdmin
 
             return $next($request);
         }
-        return abort(403);
+        return redirect('products');
     }
 }

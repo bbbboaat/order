@@ -23,24 +23,29 @@ p.blade.php -->
 
                 <div class="row">
                     @foreach ($productsView as $item)
-                    <div class="col-4">
+                    <div class="col-4 ">
 
                         <form action="{{route('orders.store')}}" method="post">
                             @csrf
                             <input type="hidden" name="product_id" value="{{$item->id}}">
-                            <div class="card p-3 mt-5 ">
-                                <img class="rounded-3" src="{{asset('storage/' . $item->image)}}" alt="">
-                                <h4 class="mt-3">Product Name : {{$item -> name}}</h4>
-                                <p>Price : {{$item -> price}}</p>
+                            <div class="card p-3 mt-5  ">
 
-                            <button class="btn btn-secondary" type="submit">Order</button>
+
+                                    <img class="rounded-3" height="300" src="{{asset('storage/' . $item->image)}}" alt="">
+                                    <h4 class="mt-3">Product Name : {{$item -> name}}</h4>
+                                    <p>Price : {{$item -> price}}</p>
+                                    <button class="btn btn-secondary" type="submit">Order</button>
+
+
                             </div>
 
                         </form>
 
                         @if(Auth::user()->type ==1)
+
                         <div class="d-flex justify-content-around" >
-                            <a href="{{route('products.edit',$item->id)}}" class="btn btn-warning mt-2 ">edit</a>
+                            <a href="{{route('products.edit',$item->id)}}"class="btn btn-warning mt-2 ">edit</a>
+
                             <form action="{{route('products.destroy' , $item->id)}}" method = "post">
                                 @csrf
                                 @method('delete')
