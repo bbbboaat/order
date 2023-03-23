@@ -12,6 +12,9 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -20,9 +23,10 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="navbar-brand" href="https://github.com/bbbboaat/shoppingcart" >
+                <i class="fa-brands fa-github p-2"></i>Source Code
                 </a>
+                <i></i>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -49,12 +53,16 @@
                                 </li>
                             @endif
                         @else
+
+
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('orders.index')}}">cart</a>
                         </li>
 
+
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('products.index')}}">product</a>
+                            <a class="nav-link" href="{{route('products.index')}}">products</a>
                         </li>
 
                             <li class="nav-item dropdown">

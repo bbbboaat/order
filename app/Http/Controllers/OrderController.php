@@ -144,7 +144,8 @@ class OrderController extends Controller
                 } else {
                     if ($cartDetail->amount <= 1) {
                         $cartDetail->delete();
-                        return view('orders.empty');
+                        // return view('orders.empty');
+
 
                     } else {
 
@@ -155,9 +156,7 @@ class OrderController extends Controller
                     }
 
                 }
-                // $cartDetail->update([
-                //     'amount' => $amountNew
-                // ]);
+
             }
             $subTotal = 0;
             $total = $order->order_details->map(function ($orderDetail) use ($subTotal) {
